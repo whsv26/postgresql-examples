@@ -6,6 +6,7 @@ create table input as (
         substring(md5(random()::text) for 5) as name
 );
 
+drop materialized view if exists input_materialized;
 create materialized view input_materialized as (
     select age, count(*)
     from input
