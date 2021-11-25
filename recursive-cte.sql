@@ -19,5 +19,4 @@ hierarchy as (
             on i.id = h.parent_id
 )
 
-select *
-from hierarchy
+select * from hierarchy
