@@ -13,6 +13,7 @@ comments(user_id, text, created_at) as (values
     (1, 'User A comment 3', '2021-01-01 02:00:00'::timestamp),
     (3, 'User C comment 1', '2021-01-01 00:00:00'::timestamp)
 )
+
 select
     u.username,
     cc.text
