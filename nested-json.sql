@@ -1,4 +1,4 @@
-with
+explain analyse with
 
 input(level_1, level_2, level_3, qty) as (values
     ('a', 'aa', 'aaa', 1),
