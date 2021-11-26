@@ -1,16 +1,16 @@
-drop table if exists input;
-create table input as (
-    select
-        generate_series(1, 1000000) as id,
-        floor(random() * 100) as age,
-        substring(md5(random()::text) for 5) as sensitive
+DROP TABLE IF EXISTS input;
+CREATE TABLE input AS (
+    SELECT
+        generate_series(1, 1000000) id,
+        floor(random() * 100) age,
+        substring(md5(random()::TEXT) FOR 5) sensitive
 );
 
-drop view if exists input_no_sensitive;
-create view input_no_sensitive as (
-    select id, age
-    from input
+DROP VIEW IF EXISTS input_no_sensitive;
+CREATE VIEW input_no_sensitive AS (
+    SELECT id, age
+    FROM input
 );
 
-select * from input_no_sensitive;
+SELECT * FROM input_no_sensitive;
 

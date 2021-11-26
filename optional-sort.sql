@@ -1,20 +1,20 @@
-with input(id, age, name) as (values
+WITH input(id, age, name) AS (VALUES
     (1, 30, 'Alex'),
     (2, 33, 'Bob'),
     (3, 20, 'Tom'),
     (4, 45, 'Gym boss')
 )
 
-select *
-from input
-order by
-    -- order by constant ASC, x DESC = order by x DESC
-    -- order by x ASC, constant DESC = order by x ASC
+SELECT *
+FROM input
+ORDER BY
+    -- ORDER BY constant ASC, x DESC = ORDER BY x DESC
+    -- ORDER BY x ASC, constant DESC = ORDER BY x ASC
 
     -- name optional sorting
-    (case when :sorting = 'name:asc' then name end),
-    (case when :sorting = 'name:desc' then name end) DESC,
+    (CASE WHEN :sorting = 'name:asc' THEN name END),
+    (CASE WHEN :sorting = 'name:desc' THEN name END) DESC,
 
     -- age optional sorting
-    (case when :sorting = 'age:asc' then age end),
-    (case when :sorting = 'age:desc' then age end) DESC;
+    (CASE WHEN :sorting = 'age:asc' THEN age END),
+    (CASE WHEN :sorting = 'age:desc' THEN age END) DESC;

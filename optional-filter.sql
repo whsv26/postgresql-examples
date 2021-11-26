@@ -1,13 +1,13 @@
-with input(id, age, name) as (values
+WITH input(id, age, name) AS (VALUES
     (1, 30, 'Alex'),
     (2, 33, 'Bob'),
     (3, 20, 'Tom'),
     (4, 45, 'Gym boss')
 )
 
-select *
-from input
-where
+SELECT *
+FROM input
+WHERE
     -- (:param isnull or predicate) is always true if :param is null (not passed)
     -- (:param isnull or predicate) is always predicate if :param is not null (passed)
 
@@ -16,13 +16,13 @@ where
     -- is equals to (c = cc)
 
     -- age optional filter
-    (:age_filter isnull or age = :age_filter) and
+    (:age_filter ISNULL OR age = :age_filter) AND
 
     -- name optional filter
-    (:name_filter isnull or name = :name_filter) and
+    (:name_filter ISNULL OR name = :name_filter) AND
 
     -- id optional filter
-    (:id_filter isnull or id = :id_filter) and
+    (:id_filter ISNULL OR id = :id_filter) AND
 
     -- ids optional filter
-    (:ids_filter isnull or id = any (string_to_array(:ids_filter, ',')::int[]));
+    (:ids_filter ISNULL OR id = ANY (string_to_array(:ids_filter, ',')::INT[]));

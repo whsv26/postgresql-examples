@@ -1,23 +1,23 @@
-with recursive
+WITH RECURSIVE
 
 -- adjacency list
-input(id, parent_id, level) as (values
+input(id, parent_id, level) AS (VALUES
     (1, 0, 'level 1'),
     (2, 1, 'level 2'),
     (3, 2, 'level 3'),
     (4, 3, 'level 4')
 ),
 
-hierarchy as (
-    select id, parent_id, level
-    from input
-    where id = 3 -- start point
-    union all
+hierarchy AS (
+    SELECT id, parent_id, level
+    FROM input
+    WHERE id = 3 -- start point
+    UNION ALL
     -- stop when join result is empty set (0 rows returned)
-    select i.id, i.parent_id, i.level
-    from hierarchy h -- previous result set stored in temporary table
-        join input i
-            on i.id = h.parent_id
+    SELECT i.id, i.parent_id, i.level
+    FROM hierarchy h -- previous result set stored in temporary table
+        JOIN input i
+            ON i.id = h.parent_id
 )
 
-select * from hierarchy
+SELECT * FROM hierarchy

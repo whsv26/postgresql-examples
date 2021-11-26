@@ -1,17 +1,15 @@
-drop aggregate jsonb_merge(jsonb);
-create aggregate jsonb_merge(jsonb) (
+DROP AGGREGATE jsonb_merge(JSONB);
+CREATE AGGREGATE jsonb_merge(JSONB) (
   SFUNC = jsonb_concat,
-  STYPE = jsonb,
+  STYPE = JSONB,
   INITCOND = '{}'
 );
 
-with input(id, obj) as (values
-    (1, '{"x": 1}'::jsonb),
-    (1, '{"x": 2, "y": 1}'::jsonb),
-    (1, '{"x": 3, "y": 2}'::jsonb)
+WITH input(id, obj) AS (VALUES
+    (1, '{"x": 1}'::JSONB),
+    (1, '{"x": 2, "y": 1}'::JSONB),
+    (1, '{"x": 3, "y": 2}'::JSONB)
 )
-select
-    id,
-    jsonb_merge(obj)
-from input
-group by id;
+SELECT id, jsonb_merge(obj)
+FROM input
+GROUP BY id;
