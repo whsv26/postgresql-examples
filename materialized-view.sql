@@ -14,9 +14,10 @@ create materialized view input_materialized as (
     group by age
 );
 
-refresh materialized view input_materialized;
+refresh materialized view input_materialized; -- no unique index required
+
 create unique index on input_materialized (age);
-refresh materialized view concurrently input_materialized;
+refresh materialized view concurrently input_materialized; -- requires unique index
 
 select * from input_materialized;
 

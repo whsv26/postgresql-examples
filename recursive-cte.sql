@@ -1,5 +1,6 @@
 with recursive
 
+-- adjacency list
 input(id, parent_id, level) as (values
     (1, 0, 'level 1'),
     (2, 1, 'level 2'),

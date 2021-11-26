@@ -1,7 +1,7 @@
 with input(id, age, name) as (values
-    (1, 30, 'Valera'),
-    (2, 33, 'Master'),
-    (3, 20, 'Slave'),
+    (1, 30, 'Alex'),
+    (2, 33, 'Bob'),
+    (3, 20, 'Tom'),
     (4, 45, 'Gym boss')
 )
 
@@ -25,15 +25,4 @@ where
     (:id_filter isnull or id = :id_filter) and
 
     -- ids optional filter
-    (:ids_filter isnull or id = any (string_to_array(:ids_filter, ',')::int[]))
-order by
-    -- order by constant ASC, x DESC = order by x DESC
-    -- order by x ASC, constant DESC = order by x ASC
-
-    -- name optional sorting
-    (case when :sorting = 'name:asc' then name end),
-    (case when :sorting = 'name:desc' then name end) DESC,
-
-    -- age optional sorting
-    (case when :sorting = 'age:asc' then age end),
-    (case when :sorting = 'age:desc' then age end) DESC
+    (:ids_filter isnull or id = any (string_to_array(:ids_filter, ',')::int[]));
