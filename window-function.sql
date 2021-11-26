@@ -11,13 +11,11 @@ select
     e.id,
     e.department,
     e.name,
-    count(e.id) over (
-        partition by department
-    ) as empoyees_in_department,
-    100 * e.salary / max(e.salary) over (
-        partition by department
-    ) as significance
-from employees e;
+    e.salary,
+    count(e.id) over dep as empoyees_in_department,
+    100 * e.salary / max(e.salary) over dep as significance
+from employees e
+window dep as (partition by department);
 
 with
 
@@ -32,9 +30,10 @@ transactions(id, username, amount, created_at) as (values
 select
     username,
     created_at as actual_at,
-    sum(amount) over (
-        partition by username
-        order by created_at
-        rows between unbounded preceding and current row
-    ) as balance
-from transactions t;
+    sum(amount) over running_totals as balance
+from transactions t
+window running_totals as (
+    partition by username
+    order by created_at
+    rows between unbounded preceding and current row
+);
