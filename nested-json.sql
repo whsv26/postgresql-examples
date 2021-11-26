@@ -17,13 +17,7 @@ grouping_sets as (
         grouping(level_2) as g2,
         grouping(level_3) as g3
     from input
-    group by grouping sets (
-        (level_1, level_2, level_3),
-        (level_1, level_2),
-        (level_1),
-        ()
-    )
-    order by level_1, level_2, level_3
+    group by rollup (level_1, level_2, level_3)
 ),
 
 json_fragment_level_3 as (
