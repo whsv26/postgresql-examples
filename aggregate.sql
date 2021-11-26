@@ -1,3 +1,4 @@
+drop aggregate jsonb_merge(jsonb);
 create aggregate jsonb_merge(jsonb) (
   SFUNC = jsonb_concat,
   STYPE = jsonb,
