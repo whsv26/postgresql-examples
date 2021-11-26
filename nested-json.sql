@@ -41,7 +41,7 @@ json_fragment_level_2 as (
         json_agg(json_build_object(
             'id', l2.level_2,
             'qty', l2.qty,
-            'sub', l3.json_array
+            'sub', coalesce(l3.json_array, '[]')
         )) as json_array
     from grouping_sets l2
         left join json_fragment_level_3 l3
@@ -58,7 +58,7 @@ json_fragment_level_1 as (
         json_agg(json_build_object(
             'id', l1.level_1,
             'qty', l1.qty,
-            'sub', l2.json_array
+            'sub', coalesce(l2.json_array, '[]')
         )) as json_array
     from grouping_sets l1
         left join json_fragment_level_2 l2
@@ -72,7 +72,7 @@ json_fragment_level_0 as (
     select
         json_build_object(
             'qty', l0.qty,
-            'sub', l1.json_array
+            'sub', coalesce(l1.json_array, '[]')
         ) as json_array
     from grouping_sets l0
         left join json_fragment_level_1 l1
