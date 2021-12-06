@@ -1,12 +1,12 @@
 DROP TABLE IF EXISTS places;
 CREATE TEMPORARY TABLE places AS (
     SELECT * FROM (VALUES
-        ('Ставрополь', point(45.0390, 41.9632)),
-        ('Краснодар', point(45.0360, 38.9746)),
-        ('Москва', point(55.7558, 37.6173)),
-        ('Георгиевск', point(44.4299494, 42.407439)),
-        ('Михайловск', point(45.1300, 42.0284)),
-        ('Лондон', point(51.5072, 0.1276))
+        ('London', point(51.509865, -0.118092)),
+        ('New York City', point(40.730610, -73.935242)),
+        ('Berlin', point(52.520008, 13.404954)),
+        ('Moscow', point(55.751244, 37.618423)),
+        ('Paris', point(48.864716, 2.349014)),
+        ('Tokyo', point(35.652832, 139.839478))
     ) AS v(geo, location)
 );
 
