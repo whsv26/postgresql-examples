@@ -1,10 +1,10 @@
 WITH
 
 users(id, username) AS (VALUES
-    (1, 'User A'),
-    (2, 'User B'),
-    (3, 'User C'),
-    (4, 'User D')
+    (1, 'User A with comments'),
+    (2, 'User B without comments'),
+    (3, 'User C with comments'),
+    (4, 'User D without comments')
 ),
 
 comments(user_id, text, created_at) AS (VALUES
@@ -16,9 +16,9 @@ comments(user_id, text, created_at) AS (VALUES
 
 SELECT
     u.username,
-    cc.text
+    cc.text last_comment
 FROM users u
-    JOIN LATERAL (
+    INNER JOIN LATERAL (
         SELECT c.text
         FROM comments c
         WHERE c.user_id = u.id
