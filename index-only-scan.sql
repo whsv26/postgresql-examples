@@ -10,7 +10,7 @@ CREATE INDEX ON numbers (num ASC) INCLUDE (id);
 CREATE INDEX ON numbers (num DESC) INCLUDE (id);
 VACUUM ANALYZE; -- Update visibility map to eliminate heap fetches for index only scan
 
-EXPLAIN ANALYZE SELECT id
+SELECT id
 FROM numbers
 ORDER BY num DESC
 LIMIT 10000;
